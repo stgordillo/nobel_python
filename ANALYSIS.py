@@ -9,10 +9,10 @@ print(nobel.head())
 
 # Q1 What is the most commonly awarded gender and birth country?
 # Finding the top gender and country using mode
-top_gender = nobel['sex'].mode()[0]
+top_gender = nobel['sex'].mode()
 print(top_gender)
 
-top_country = nobel['birth_country'].mode()[0]
+top_country = nobel['birth_country'].mode()
 print(top_country)
 
 # Q2 Which decade had the highest ratio of US-born Nobel Prize winners to total winners in all categories?
@@ -40,8 +40,8 @@ sns.relplot(x='decades', y='female_winners', hue='category', data=avg_female_win
 # Q4 Who was the first woman to receive a Nobel Prize, and in what category?
 first_nobel_female = nobel[nobel['female_winners']]
 first = first_nobel_female[first_nobel_female['year'] == first_nobel_female['year'].min()]
-first_woman_name = first['full_name'].values[0]
-first_woman_category = first['category'].values[0]
+first_woman_name = first['full_name'].values
+first_woman_category = first['category'].values
 print(first_woman_name,first_woman_category)
 
 # Q5 Which individuals or organization have won more than one Nobel Prize throughout the years?
