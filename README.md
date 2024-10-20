@@ -1,31 +1,38 @@
 # Nobel Prize Analysis - Python Project
 ## Introduction
-Final project as a part of my Computer Programming II course. We were given the opportunity to choose whatever dataset we wanted.  I wanted to check out the most popular songs from a Spotify 2023 dataset. My plan was to take a look at which artists had the most songs in the list, what songs were the most streamed and finally play with one of the unique column categories in this particular dataset.
+This analysis is just practice. I've improved a lot since my last python project and also learned how to better mask and so I wanted to work on that as well as getting better at aggragating data among other tricks I've picked up. 
 
 ## Data Sources
-The dataset used in this project was retrieved from a fairly popular Kaggle dataset found here: [Most Streamed Spotify Songs 2023](https://www.kaggle.com/datasets/nelgiriyewithana/top-spotify-songs-2023/data).
+The dataset used in this project was retrieved from a Kaggle dataset found here: [Nobel Prize Dataset](https://www.kaggle.com/datasets/imdevskp/nobel-prize).
 
-The data provides information regarding song's various attributes, popularity, information and streaming stats in Spotify, Apple Music, Deeze, and Shazam.
+This data has both raw and cleaned versions of a csv, since this was practice for filtering, etc and not for cleaing, I opted to start from the cleaned dataset this time. It contains demographic data for winners, years awarded, affliations, etc which we can use for our insights.
 
 ## Analysis Report
-This section is a quick summary of my findings. You can find the full code and comments in the [Analysis](https://github.com/stgordillo/spotify_2023_python_project/blob/main/ANALYSIS.py).
+This section is a quick summary of my findings. You can find the full code and comments in the [Analysis](https://github.com/stgordillo/nobel_python/blob/main/ANALYSIS.py).
 
 ### Initial
-To start, there was a compatibility problem with the unicode in the csv, and so I had to change the encoding from UTF-8 using encoding="ISO-8859-1" for it to read it as Latin-1. 
+For this practice analysis, I wanted to practice more with looking for the answers to "business questions" or rather have some sort of goal that I initially give myself to try and solve. Here, I had five questions in total to find in the dataset:
+What is the most commonly awarded gender and birth country?
+Which decade had the highest ratio of US-born Nobel Prize winners to total winners in all categories?
+Which decade and Nobel Prize category combination had the highest proportion of female laureates?
+Who was the first woman to receive a Nobel Prize, and in what category?
+Which individuals or organization have won more than one Nobel Prize throughout the years?
+
+I also have recently taken a small course learning more about seaborn so I loaded up the following packages for this analysis: pandas, matplotlib, seaborn and numpy. 
 
 ### Exploration
-I explored the data, checking for nulls, data types and what would interest me in the analysis.  Found some nulls in two columns I didn't think I'd like to use, so I moved on to creating a new dataset without those and other columns.  
-
-While I do think it would be interesting to look at some of the columns I wanted to remove, I think think it would be better in a more dedicated analysis looking at those specific parameters in a future project. I wasn't interested in charts besides Spotify so I removed Applem, Deeze and Shazam, as well as a lot of the unique song features like acousticness. I did leave danceability in as I did think it would be worth looking at. Lastly for this section, I checked for duplicates and nulls again, found none. 
-
-At a later point in my analysis, I also ran into a problem with the streams column containing multiple datatypes in it, so I changed to change the data type to numeric in order to complete the particular analysis, explained later. 
+Exploration wasn't too involved in coding, but I did sift through the dataset for awhile so I could determine what my five questions would be that I couldn't get the answers to just from looking at the data in a table. In this case, I just used .head() to look at column names and get an idea of what I wanted to look into and came to the questions above. 
 
 ### Findings
-Initially I found that 2018 had the most popular songs in 2023. I also found that Taylor Swift had the most songs in the most streamed songs list with 34 songs compared to the next highest, TThe Weeknd with 22 songs.  I decided to visualize that information with a horizontal bar chart. 
+Looking at my first question, "What is the most commonly awarded gender and birth country?" I just used .mode() on the columns of 'sex' and 'birth_country' to find the answers as Male and United States of America respectively. 
 
-I then wanted to see which songs had the most streams. Interestingly, the Weeknd had the most streams with nearly 4 trillion streams and Taylor Swift wasn't even in the top 10, despite having the most songs in the list. I decided to show this information in both a bar chart and a pie chart in order to showcase the different ways to look at this information. 
+The second question, "Which decade had the highest ratio of US-born Nobel Prize winners to total winners in all categories?" I created a new column that had a boolean value if the person listed there was born in America or not, then I created a second column that "bins" the years into decades and finally I grouped the data by decades and found the mean of US winners by decade and found the max to find the the decade with the most being 2000s. I also used a relplot with sns to visualize this information. 
 
-Finally, I wanted to make use of that song attribute, "danceability".  Here, I compared the danceability trait compared to the release year of songs and visualized it with a line chart in order to see that danceability had a large spike right before 2000, but has overall steadily increased over the years. 
+Third question, "Which decade and Nobel Prize category combination had the highest proportion of female laureates?" was found using something similar as my last question, creating a boolean column for female winners, using groupby and mean to find the average per decade and category, and finding the top decade with max. Then turned into into a dictionary and finally plotted the data with another relplot in sns. The finding was 2020 in Literature with a proportion of 68 winners. 
+
+Question 4, "Who was the first woman to receive a Nobel Prize, and in what category?", I filtered the dataframe for only female winners, filtered down to the minimum (earliest) year and extracted her name and category being the famous Madame Curie in Physics. 
+
+Finally the last question was "Which individuals or organization have won more than one Nobel Prize throughout the years?" and I obtained that information by using the full_name column to count the values of unique names. Then I used filtering and indexing to find anyone who's named appeared more than once, changing the index into a list to find 6 returners to getting a Nobel Prize. The Red Cross and the Office of the UN High Commissioner for Refugees being the returning organizations and the returning individuals being Linus Carl Pauling, John Bardeen, Frederick Sanger, and Marie Curie.
 
 ## Visualizations
-You can find my visualizations for the the analysis in [Visualizations](https://github.com/stgordillo/spotify_2023_python_project/blob/main/VISUALIZATIONS.md).
+You can find my visualizations for the the analysis in [Visualizations](https://github.com/stgordillo/nobel_python/blob/main/VISUALIZATIONS.md).
