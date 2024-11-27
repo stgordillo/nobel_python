@@ -12,10 +12,14 @@ This section is a quick summary of my findings. You can find the full code and c
 
 ### Initial
 For this practice analysis, I wanted to practice more with looking for the answers to "business questions" or rather have some sort of goal that I initially give myself to try and solve. Here, I had five questions in total to find in the dataset:
+
 What is the most commonly awarded gender and birth country?
 Which decade had the highest ratio of US-born Nobel Prize winners to total winners in all categories?
+
 Which decade and Nobel Prize category combination had the highest proportion of female laureates?
+
 Who was the first woman to receive a Nobel Prize, and in what category?
+
 Which individuals or organization have won more than one Nobel Prize throughout the years?
 
 I also have recently taken a small course learning more about seaborn so I loaded up the following packages for this analysis: pandas, matplotlib, seaborn and numpy. 
